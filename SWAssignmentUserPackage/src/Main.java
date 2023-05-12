@@ -1,17 +1,19 @@
 import Database.*;
 import Ordering.*;
 import Products.*;
+import Users.*;
+
+import java.util.Scanner;
 
 public class Main {
-
-    /*public static void showMenu() {
+    public static void showMenu() {
         Scanner sc = new Scanner(System.in);
-        if (userController.getCurrentUser() == null) { //For not-registered users
+        if (UsersDB.getUser() == null) { //For not-registered users
             System.out.println("1. Register a new user\n2. Log in\n3. View catalog\n4. Exit\n");
             int option = sc.nextInt();
             switch (option) {
-                case 1: *//*Handle register Here*//* break;
-                case 2: *//*Handle Login Here*//* break;
+                case 1: /*Handle register Here*/ break;
+                case 2: /*Handle Login Here*/ break;
                 case 3: MenuDB.viewMenu(); break;
                 default:
                     System.exit(0);
@@ -21,33 +23,26 @@ public class Main {
             int option = sc.nextInt();
             switch (option) {
                 case 1: MenuDB.viewMenu(); break;
-                case 2: *//*Handle view cart Here*//* break;
+                case 2: /*Handle view cart Here*/ break;
                 case 3:
-                    *//*Handle logout Here*//*
+                    UsersDB.logout();
                     break;
                 default:
                     System.exit(0);
             }
         }
-        sc.close();
+
         return;
-    }*/
+    }
     public static void main(String[] args) {
-        Item item1 = new Item( 1,"Coke", 2, "Drink", "Coke", "Coke", "Coke", 10);
-        Item item2 = new Item( 2,"Pepsi", 2, "Drink", "Pepsi", "Pepsi", "Pepsi", 10);
+        Item item1 = new Item(1, "Coke", 2, "Drink", "Coke", "Coke", "Coke", 10);
+        Item item2 = new Item(2, "Pepsi", 2, "Drink", "Pepsi", "Pepsi", "Pepsi", 10);
         MenuDB.addItemToMenu(item1);
         MenuDB.addItemToMenu(item2);
-        MenuDB.removeItemFromMenu(2);
-        MenuDB.viewMenu();
-        ShoppingCart sc = new ShoppingCart();
-        sc.addItem(item1, 2);
-        sc.addItem(item2, 3);
-        OrdersDB.addOrder(sc);
-        OrdersDB.viewOrder();
-        OrdersDB.setOrderPaid(true);
-        OrdersDB.viewOrder();
-        OrdersDB.delOrder();
 
+        System.out.println("Welcome to Toffee Shop..\nPlease choose the option you would like to do:\n");
+        while (true)
+            showMenu();
 
     }
 

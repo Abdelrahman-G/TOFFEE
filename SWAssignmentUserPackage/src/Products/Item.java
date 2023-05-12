@@ -2,8 +2,8 @@ package Products;
 
 public class Item {
     public int itemID;
-    private String name;
-    private double price;
+    private static String name;
+    private static double price;
     private String category;
     private String description;
     private String brand;

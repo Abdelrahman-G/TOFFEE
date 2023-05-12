@@ -2,6 +2,7 @@ package Database;
 import Products.Item;
 import Products.Menu;
 
+
 public class MenuDB {
     private static Menu menu = new Menu();
 
@@ -9,7 +10,7 @@ public class MenuDB {
         return menu;
     }
 
-    public static void addItemToMenu(Item item) {
+    public  static void addItemToMenu(Item item) {
         menu.addItemToMenu(item);
     }
 
