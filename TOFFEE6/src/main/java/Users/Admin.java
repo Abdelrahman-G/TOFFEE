@@ -12,7 +12,7 @@ public class Admin extends User{
     private Menu menu;
 
     public Admin(String name, int id, String email, String password) {
-        super(name, id, email, password, "Admin");
+        super(name, id, email, password,"non", "Admin");
         this.menu = new Menu();
     }
     public void viewItems() {

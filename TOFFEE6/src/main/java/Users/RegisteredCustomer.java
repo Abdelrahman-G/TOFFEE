@@ -1,9 +1,8 @@
 package Users;
+import Ordering.*;
+import Products.*;
 
-import Ordering.Order;
-import Ordering.Payment;
-import Ordering.ShoppingCart;
-import Products.Item;
+
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -20,10 +19,13 @@ public class RegisteredCustomer extends Customer{
     private Order[] order;
     private Item items;
     private Payment paymentMethod;
+    public RegisteredCustomer() {
+
+    }
 
     public RegisteredCustomer(String name, int id, String email, String password, String username, String address,
                               String phone) {
-        super(name, id, email, password);
+        super(name, id, email,address, password);
         this.username = username;
         this.address = address;
         this.phone = phone;
@@ -45,7 +47,7 @@ public class RegisteredCustomer extends Customer{
         return "Loyalty Points: " + loyaltyPoints;
     }
 
-public static boolean logIn(String username, String password) {
+public  boolean logIn(String username, String password) {
     try (BufferedReader reader = new BufferedReader(new FileReader("CustomersData.txt"))) {
         String line;
         while ((line = reader.readLine()) != null) {
@@ -54,7 +56,7 @@ public static boolean logIn(String username, String password) {
             if (userData.length >= 2) {
                 String storedUsername = userData[0].trim();
                 String storedPassword = userData[1].trim();
-
+                System.out.println(userData[0] + " " + userData[1]);
                 if (username.equals(storedUsername) && password.equals(storedPassword)) {
                     System.out.println("Login successful.");
                     return true;
