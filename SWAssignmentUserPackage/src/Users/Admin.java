@@ -1,6 +1,8 @@
 package Users;
+import Ordering.Orders;
+import Products.Menu;
+import Products.Item;
 
-import java.util.List;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,7 +16,7 @@ public class Admin extends User{
         this.menu = new Menu();
     }
     public void viewItems() {
-        List<Item> ItemList = menu.getItems();
+        Item ItemList[] = menu.getItems();
         for (Item item : ItemList) {
             System.out.println(item.getName() + " - " +item.getPrice());
         }
@@ -59,11 +61,11 @@ public class Admin extends User{
     public void addItem(Item item) {
         menu.addItemToMenu(item);
     }
-    public void updateItem(Item item){
-        menu.updateMenuItemInfo(item);
+    public void updateItem(int itemID,String givenName, int givenprice, String givenCategory, String givenDescription, String givenBrand, String givenDiscountCode, int givenQuantity){
+        menu.updateMenuItemInfo(itemID,  givenName,  givenprice,  givenCategory,  givenDescription,  givenBrand,  givenDiscountCode,  givenQuantity);
     }
-    public void deleteItem(Item item){
-        menu.removeItemFromMenu(item);
+    public void deleteItem(int itemID){
+        menu.removeItemFromMenu(itemID);
     }
     public void suspendCustomer(Customer customer) {
         customer.setSuspended(true);

@@ -1,5 +1,6 @@
 package Users;
-
+import Products.Menu;
+import Products.Item;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -34,7 +35,7 @@ public class Customer extends User {
     }
 
     public Item searchByItem(String itemName) {
-        List<Item> items = menu.getItems();
+        Item items[] = menu.getItems();
         for (Item item : items) {
             if (item.getName().equals(itemName)) {
                 return item;
@@ -44,7 +45,7 @@ public class Customer extends User {
     }
 
     public Item searchByCategory(String categoryName) {
-        List<Item> items = menu.getItems();
+        Item items[] = menu.getItems();
         for (Item item : items) {
             if (item.getCategory().equals(categoryName)) {
                 return item;

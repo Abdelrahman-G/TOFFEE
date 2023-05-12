@@ -1,4 +1,4 @@
-package Users;
+package Ordering;
 
 public class Payment {
 }
