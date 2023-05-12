@@ -5,20 +5,13 @@ import Products.Item;
 import java.util.ArrayList;
 import java.util.List;
 public class Menu {
-    private static int menuID = 0; // unique
     private Item[] items;
 
     public Menu() {
-        menuID++;
-        this.menuID = menuID;
         items = new Item[0];
     }
 
-    public int getMenuID() {
-        return menuID;
-    }
     public Item[] getItems() {
-
         return items;
     }
 
@@ -72,7 +65,9 @@ public class Menu {
                 return; // exit method once item is updated
             }
         }
-        // if item not found, throw an exception
-        throw new IllegalArgumentException("Item not found in menu");
+
+    }
+    public void viewMenu(){
+
     }
 }

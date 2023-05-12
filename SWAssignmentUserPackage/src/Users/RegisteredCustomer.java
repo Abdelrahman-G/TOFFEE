@@ -1,6 +1,7 @@
 package Users;
 
 import Ordering.Order;
+import Ordering.Payment;
 import Ordering.ShoppingCart;
 import Products.Item;
 
@@ -8,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public class RegisteredCustomer extends Customer{
     private String username;
@@ -42,9 +44,7 @@ public class RegisteredCustomer extends Customer{
     public String getLoyaltyPoints(){
         return "Loyalty Points: " + loyaltyPoints;
     }
-//    public Orders showOrderHistory (){
-//
-//    }
+
 public static boolean logIn(String username, String password) {
     try (BufferedReader reader = new BufferedReader(new FileReader("CustomersData.txt"))) {
         String line;
@@ -73,10 +73,10 @@ public static boolean logIn(String username, String password) {
 //
 //    }
     public void viewShoppingCart(){
-        List<Item> ItemList = ShoppingCart.getItems();
-        for (Item item : ItemList) {
-            System.out.println(item.getName() + " - " +item.getPrice());
-        }
+        Map<Item, Integer> map = ShoppingCart.getItems();
+        for (Item key : map.keySet()) {
+            Integer value = map.get(key);
+            System.out.println(key.getName() + " - " +key.getPrice());        }
     }
 
     public void addItemToCart(Item item, int quantity){

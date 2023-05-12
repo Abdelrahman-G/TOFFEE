@@ -74,7 +74,7 @@ public class Admin extends User{
     public void trackOrder(Order order) {
 
         int orderId = order.getId();
-        int orderDate = order.getDate();
+        String orderDate = order.getDate();
 
         System.out.println("Order ID: " + orderId);
         System.out.println("Order Date: " + orderDate);

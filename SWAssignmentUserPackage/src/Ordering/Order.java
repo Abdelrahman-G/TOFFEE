@@ -1,21 +1,30 @@
 package Ordering;
 
-import java.util.List;
 import java.util.Map;
-import Products.Item;
-public class Order {
 
+import Products.Item;
+import Users.Customer;
+
+public class Order {
     private Map<Item, Integer> items;
     private double totalCost;
     private boolean isPaid;
     private boolean isDelivered;
+    private String Date;
+    private Customer customer;
+    private ShoppingCart cart;
+
+    int orderID;
 
     public Order(Map<Item, Integer> items, double totalCost) {
         this.items = items;
         this.totalCost = totalCost;
     }
+    public Order(ShoppingCart cartt) {
+        this.cart = cartt;
+    }
 
-    public double getTotalCost() {
+    public double getTotalOrderPrice() {
         return totalCost;
     }
 
@@ -34,13 +43,22 @@ public class Order {
     public void setDelivered(boolean isDelivered) {
         this.isDelivered = isDelivered;
     }
-    int Id;
-    int Date;
+
     public int getId() {
-        return Id;
+        return orderID;
     }
-    public int getDate() {
+
+    public String getDate() {
         return Date;
+    }
+
+    public void getOrderInfo() {
+        System.out.println("Order ID: " + orderID);
+        System.out.println("Order Date: " + Date);
+        System.out.println("Order Items: " + items);
+        System.out.println("Order Total Cost: " + totalCost);
+        System.out.println("Order Paid: " + isPaid);
+        System.out.println("Order Delivered: " + isDelivered);
     }
 
 }

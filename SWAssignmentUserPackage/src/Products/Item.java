@@ -1,10 +1,9 @@
 package Products;
 
 public class Item {
-    public static int itemID = 0;
-
+    public int itemID;
     private String name;
-    private int price;
+    private double price;
     private String category;
     private String description;
     private String brand;
@@ -32,13 +31,11 @@ public class Item {
 
 
     public Item() {
-        itemID++;
-        this.itemID = itemID;
+
     }
 
-    public Item( String name, int price, String category, String description, String brand, String discountCode, int quantity) {
-        itemID++;
-        this.itemID = itemID;
+    public Item( int id, String name, double price, String category, String description, String brand, String discountCode, int quantity) {
+        this.itemID = id;
         this.name = name;
         this.price = price;
         this.category = category;
@@ -76,11 +73,11 @@ public class Item {
         return brand;
     }
 
-    public int getPrice() {
+    public static double getPrice() {
         return price;
     }
 
-    public String getName() {
+    public static String getName() {
         return name;
     }
 
@@ -109,7 +106,8 @@ public class Item {
     }
 
 
-    public void setItemInfo(String name, int price, String category, String description, String brand, String discountCode, int quantity) {
+    public void setItemInfo(int id, String name, int price, String category, String description, String brand, String discountCode, int quantity) {
+        this.itemID = id;
         this.name = name;
         this.price = price;
         this.category = category;
