@@ -1,4 +1,4 @@
 package Ordering;
 
-public class Payment {
+public interface Payment {
 }

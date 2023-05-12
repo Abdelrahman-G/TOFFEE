@@ -1,5 +1,5 @@
 package Users;
-import Ordering.Orders;
+import Ordering.Order;
 import Products.Menu;
 import Products.Item;
 
@@ -71,7 +71,7 @@ public class Admin extends User{
         customer.setSuspended(true);
         System.out.println("Customer suspended: " + customer.getName());
     }
-    public void trackOrder(Orders order) {
+    public void trackOrder(Order order) {
 
         int orderId = order.getId();
         int orderDate = order.getDate();

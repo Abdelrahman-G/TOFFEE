@@ -1,7 +1,6 @@
 package Users;
 
-import Ordering.Orders;
-import Ordering.Payment;
+import Ordering.Order;
 import Ordering.ShoppingCart;
 import Products.Item;
 
@@ -16,7 +15,7 @@ public class RegisteredCustomer extends Customer{
     private String phone;
     private boolean isActive;
     private int loyaltyPoints;
-    private Orders[] order;
+    private Order[] order;
     private Item items;
     private Payment paymentMethod;
 
@@ -28,7 +27,7 @@ public class RegisteredCustomer extends Customer{
         this.phone = phone;
         this.isActive = true;
         this.loyaltyPoints = 0;
-        this.order = new Orders[10];
+        this.order = new Order[10];
         this.paymentMethod = null;
     }
     public void showInfo(){
