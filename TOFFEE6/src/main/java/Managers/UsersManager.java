@@ -96,8 +96,8 @@ public class UsersManager {
             } else {
                 break;
             }
-            sendOTP(username,email, otpGen());
         }
+
 
 
         while (true) {

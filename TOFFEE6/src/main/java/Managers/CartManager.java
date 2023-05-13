@@ -9,18 +9,10 @@ import java.util.Scanner;
 
 public class CartManager {
     public static int LOOSE_MAX = 10, PACKAGE_MAX = 50;
-
     private ShoppingCart userCart = new ShoppingCart();
-
-    private OrdersManager orderDB;
+    private OrdersManager orderManager;
     MenuManager menuController = new MenuManager();
     Map<Integer, Item> menuItems = menuController.getSysItems();
-
-    public void CartDB() {
-        userCart = new ShoppingCart();
-        orderDB = new OrdersManager();
-    }
-
 
     public void addItemToCart() {
         Scanner sc = new Scanner(System.in);
@@ -107,18 +99,18 @@ public class CartManager {
     }
 
     public void placeOrder() {
-        orderDB.addOrder(userCart);
+        orderManager.addOrder(userCart);
         System.out.println("Order placed.");
-        orderDB.viewOrder();
+        orderManager.viewOrder();
         displayCart();
 
     }
 
     public boolean isOrderDelivered() {
-        return orderDB.isOrderDelivered();
+        return orderManager.isOrderDelivered();
     }
 
     public void setOrderDelivered(boolean isDelivered) {
-        orderDB.setOrderDelivered(isDelivered);
+        orderManager.setOrderDelivered(isDelivered);
     }
 }
