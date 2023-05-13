@@ -63,8 +63,8 @@ public class Main {
         System.out.println("Welcome to Toffee Shop..");
         UsersManager userManager = new UsersManager();
 
-        /*while (true) {
+        while (true) {
             showMenu();
-        }*/
+        }
     }
 }
