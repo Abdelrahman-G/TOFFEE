@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Main {
     public static void showMenu() {
         Scanner sc = new Scanner(System.in);
-        if (UsersDB.getUser() == null) { //For not-registered users
+        if (true) { //For not-registered users
             System.out.println("1. Register a new user\n2. Log in\n3. View catalog\n4. Exit\n");
             int option = sc.nextInt();
             switch (option) {
@@ -39,21 +39,8 @@ public class Main {
                      }
                     break;
                 case 2:
-                    String loginUsername , loginPassword;
-                    System.out.println("enter your username : ");
-                    loginUsername = sc.next();
-                    System.out.println("enter your password : ");
-                    loginPassword = sc.next();
-                    RegisteredCustomer rg = new RegisteredCustomer();
-                    if (rg.logIn(loginUsername,loginPassword)){
-                        CartDB cart = new CartDB();
-                        cart.viewCart();
-
-                    }
-
-                    else
-                        System.out.println("failed");
-
+                    UsersDB user = new UsersDB();
+                    user.verifyLogIn();
                     break;
                 case 3: MenuDB.viewMenu(); break;
                 default:
@@ -66,7 +53,7 @@ public class Main {
                 case 1: MenuDB.viewMenu(); break;
                 case 2: /*Handle view cart Here*/ break;
                 case 3:
-                    UsersDB.logout();
+                    System.exit(0);
                     break;
                 default:
                     System.exit(0);
@@ -82,8 +69,9 @@ public class Main {
         MenuDB.addItemToMenu(item2);
 
         System.out.println("Welcome to Toffee Shop..\nPlease choose the option you would like to do:\n");
-        while (true)
+        while (true) {
             showMenu();
+        }
 
     }
 

@@ -18,11 +18,10 @@ public class RegisteredCustomer extends Customer{
     private int loyaltyPoints;
     private Order[] order;
     private Item items;
-    private Payment paymentMethod;
+
     public RegisteredCustomer() {
 
     }
-
     public RegisteredCustomer(String name, int id, String email, String password, String username, String address,
                               String phone) {
         super(name, id, email,address, password);
@@ -47,7 +46,7 @@ public class RegisteredCustomer extends Customer{
         return "Loyalty Points: " + loyaltyPoints;
     }
 
-public  boolean logIn(String username, String password) {
+public  RegisteredCustomer logIn(String username, String password) {
     try (BufferedReader reader = new BufferedReader(new FileReader("CustomersData.txt"))) {
         String line;
         while ((line = reader.readLine()) != null) {
@@ -56,18 +55,17 @@ public  boolean logIn(String username, String password) {
             if (userData.length >= 2) {
                 String storedUsername = userData[0].trim();
                 String storedPassword = userData[1].trim();
-                System.out.println(userData[0] + " " + userData[1]);
                 if (username.equals(storedUsername) && password.equals(storedPassword)) {
                     System.out.println("Login successful.");
-                    return true;
+                    return this;
                 }
             }
         }
         System.out.println("Invalid username or password.");
-        return false;
+        return null;
     } catch (IOException e) {
         System.out.println("Error reading user data: " + e.getMessage());
-        return false;
+        return null;
     }
 }
 
