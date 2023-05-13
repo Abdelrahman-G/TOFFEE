@@ -25,26 +25,25 @@ public class UsersManager {
     public static String otpGen() {
         Random random = new Random();
         StringBuilder str = new StringBuilder();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 4; i++) {
             str.append(random.nextInt(10));
         }
         return str.toString();
     }
 
 
-    public static Boolean sendOTP(String curr_user, String email, String otp){
-        boolean flag = false;
-        Properties properties = new Properties();
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.starttls.enable", "true");
-        properties.put("mail.smtp.port", "587");
-        properties.put("mail.smtp.host", "smtp.gmail.com");
-        // Sender's email and password
-        String username = "toffeeassignex1";
-        String password = "tecxqzssauonedzq";
+    public static boolean sendOTP(String currUser, String email, String otp) {
+        boolean success = false;
+        final String username = "toffeeassignex1";
+        final String password = "tecxqzssauonedzq";
 
-        // Creating Session Object
-        Session session = Session.getInstance(properties, new Authenticator() {
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+
+        Session session = Session.getInstance(props, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username, password);
@@ -53,27 +52,20 @@ public class UsersManager {
 
         try {
             Message message = new MimeMessage(session);
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
             message.setFrom(new InternetAddress("toffeeassignex1@gmail.com"));
-
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
             message.setSubject("Welcome to Toffee Store! Confirm Your Account with OTP");
-            String msg = "Dear " + curr_user + "," +
-                    "\n" +
-                    "We're excited to welcome you to Toffee Store " +
-                    "and thank you for registering with us! To complete your account registration, " +
-                    "Please use the following OTP to verify your account: " + otp +
-                    "\n\nThank you for choosing Toffee Store." +
-                    " We look forward to providing you with the best possible shopping experience.\n\n" +
-                    "Toffee Store Team";
+            String msg = "Dear " + currUser + ",\n\n"
+                    + "Please use the following OTP to verify your account: " + otp;
             message.setText(msg);
+
             Transport.send(message);
-            flag = true;
-        } catch (Exception e) {
+            success = true;
+        } catch (MessagingException e) {
             e.printStackTrace();
         }
-        return flag;
+        return success;
     }
-
     public static void addUser() {
         Scanner sc = new Scanner(System.in);
         //RegisteredCustomer(String uName,  String passWord, String eMail, String uPhone )
@@ -104,7 +96,9 @@ public class UsersManager {
             } else {
                 break;
             }
+            sendOTP(username,email, otpGen());
         }
+
 
         while (true) {
         System.out.println("Enter your phone : ");

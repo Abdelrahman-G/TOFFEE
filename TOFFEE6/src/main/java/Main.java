@@ -62,7 +62,6 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Welcome to Toffee Shop..");
         UsersManager userManager = new UsersManager();
-        userManager.sendOTP("Saif","saifehazemb@gmail.com", "1234");
 
         /*while (true) {
             showMenu();
