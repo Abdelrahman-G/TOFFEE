@@ -9,10 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Properties;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class UsersManager {
@@ -22,7 +19,7 @@ public class UsersManager {
     }
     static RegisteredCustomer currentUser = null;
 
-    public static String otpGen() {
+    public static String otpGenerator() {
         Random random = new Random();
         StringBuilder str = new StringBuilder();
         for (int i = 0; i < 4; i++) {
@@ -66,6 +63,10 @@ public class UsersManager {
         }
         return success;
     }
+
+    public static boolean verifyOTP (String otp , String systemOTP) {
+        return Objects.equals(otp, systemOTP);
+    }
     public static void addUser() {
         Scanner sc = new Scanner(System.in);
         //RegisteredCustomer(String uName,  String passWord, String eMail, String uPhone )
@@ -96,9 +97,21 @@ public class UsersManager {
             } else {
                 break;
             }
-            sendOTP(username,email, otpGen());
         }
-
+        while (true) {
+            String systemOTP = otpGenerator() , otp;
+            sendOTP(username,email, systemOTP);
+            System.out.println("please enter OTP sent to this email " + email);
+            otp = sc.next();
+            if (verifyOTP(otp , systemOTP)){
+                System.out.println("email is verified");
+                break;
+            }
+            else {
+                System.out.println("WRONG OTP");
+                System.exit(0);
+            }
+        }
 
         while (true) {
         System.out.println("Enter your phone : ");
