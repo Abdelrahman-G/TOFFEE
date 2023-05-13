@@ -4,12 +4,12 @@ import java.util.Scanner;
 
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
-    private static UsersManager usersDB = new UsersManager();
+    private static UsersManager usersManager = new UsersManager();
     private static CartManager cartManager = new CartManager();
 
     public static void showMenu() {
         System.out.println();
-        if (usersDB.getUser() == null) { // For not-registered users
+        if (usersManager.getUser() == null) { // For not-registered users
             System.out.println("Please choose the option you would like to do:");
             System.out.println("1. Register a new user");
             System.out.println("2. Log in");
@@ -20,10 +20,10 @@ public class Main {
 
             switch (option) {
                 case 1:
-                    usersDB.addUser();
+                    usersManager.addUser();
                     break;
                 case 2:
-                    usersDB.verifyLogIn();
+                    usersManager.verifyLogIn();
                     break;
                 case 3:
                     MenuManager.viewMenu();
@@ -50,7 +50,7 @@ public class Main {
                     cartManager.dealingWithCart(cart);
                     break;
                 case 3:
-                    usersDB.logout();
+                    usersManager.logout();
                     System.out.println("Logged out successfully.");
                     break;
                 default:
