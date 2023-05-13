@@ -1,73 +1,47 @@
 package Products;
 
-import Products.Item;
+import java.util.HashMap;
+import java.util.Map;
 
-import java.util.ArrayList;
-import java.util.List;
+
+
 public class Menu {
-    private Item[] items;
+    private Map<Integer, Item> systemItems = new HashMap<>();
 
     public Menu() {
-        items = new Item[0];
+        this.systemItems = new HashMap<>();
+        Item item1 = new Item(1, "Coca Cola", 5, 10);
+        addItem(item1.getItemID(),item1);
+
+        Item item2 = new Item(2, "Pepsi", 5, 10);
+        addItem(item2.getItemID(),item2);
+
+        Item item3 = new Item(3, "Cookies White", 7, 10);
+        addItem(item3.getItemID(),item3);
+
+        Item item4 = new Item(4, "Cookies Black", 6, 10);
+        addItem(item4.getItemID(),item4);
+
     }
 
-    public Item[] getItems() {
-        return items;
+    public void addItem(int id, Item item) {
+        systemItems.put(id, item);
     }
 
-    public void addItemToMenu(Item item) {
-        // create a new array with increased length
-        Item[] newItems = new Item[items.length + 1];
-        // copy existing items into new array
-        for (int i = 0; i < items.length; i++) {
-            newItems[i] = items[i];
+    public void removeItemFromMenu(int id) {
+        systemItems.remove(id);
+    }
+
+    public void updateMenuItemInfo(int itemID, String name, int price, int quantity) {
+        Item itemToUpdate = systemItems.get(itemID);
+        if (itemToUpdate != null) {
+            itemToUpdate.setName(name);
+            itemToUpdate.setPrice(price);
+            itemToUpdate.setQuantity(quantity);
         }
-        // add new item to the end of new array
-        newItems[items.length] = item;
-        // replace old array with new array
-        items = newItems;
     }
 
-    public void removeItemFromMenu(int itemID) {
-        // search for item with given ID
-        for (int i = 0; i < items.length; i++) {
-            if (items[i].getItemID() == itemID) {
-                // create a new array with decreased length
-                Item[] newItems = new Item[items.length - 1];
-                // copy existing items into new array, except for the item to be removed
-                for (int j = 0; j < i; j++) {
-                    newItems[j] = items[j];
-                }
-                for (int j = i; j < items.length - 1; j++) {
-                    newItems[j] = items[j + 1];
-                }
-                // replace old array with new array
-                items = newItems;
-                return; // exit method once item is removed
-            }
-        }
-        // if item not found, throw an exception
-        throw new IllegalArgumentException("Item not found in menu");
-    }
-
-    public void updateMenuItemInfo(int itemID, String name, int price, String category, String description, String brand, String discountCode, int quantity) {
-        // search for item with given ID
-        for (int i = 0; i < items.length; i++) {
-            if (items[i].getItemID() == itemID) {
-                // update item information
-                items[i].setName(name);
-                items[i].setPrice(price);
-                items[i].setCategory(category);
-                items[i].setDescription(description);
-                items[i].setBrand(brand);
-                items[i].setDiscountCode(discountCode);
-                items[i].setQuantity(quantity);
-                return; // exit method once item is updated
-            }
-        }
-
-    }
-    public void viewMenu(){
-
+    public Map<Integer, Item> getMenuItems() {
+        return systemItems;
     }
 }

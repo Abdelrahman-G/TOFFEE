@@ -1,26 +1,32 @@
 package Ordering;
 
-import java.util.Map;
-
 import Products.Item;
-import Users.Customer;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 public class Order {
     private Map<Item, Integer> items;
     private double totalCost;
     private boolean isPaid;
     private boolean isDelivered;
-    private String Date;
-    private Customer customer;
+
+    LocalDate currentDate = LocalDate.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    String currentDateString = currentDate.format(formatter);
+    private String Date = currentDateString;
+
     private ShoppingCart cart;
 
-    int orderID;
+    private static int orderID = 0;
 
-    public Order(Map<Item, Integer> items, double totalCost) {
-        this.items = items;
-        this.totalCost = totalCost;
+    public Order() {
+        this.orderID = ++orderID;
     }
+
     public Order(ShoppingCart cartt) {
+        this.orderID = ++orderID;
         this.cart = cartt;
     }
 
@@ -55,10 +61,7 @@ public class Order {
     public void getOrderInfo() {
         System.out.println("Order ID: " + orderID);
         System.out.println("Order Date: " + Date);
-        System.out.println("Order Items: " + items);
-        System.out.println("Order Total Cost: " + totalCost);
-        System.out.println("Order Paid: " + isPaid);
-        System.out.println("Order Delivered: " + isDelivered);
+
     }
 
 }

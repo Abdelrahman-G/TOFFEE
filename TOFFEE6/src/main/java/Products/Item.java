@@ -2,14 +2,9 @@ package Products;
 
 public class Item {
     public int itemID;
-    private static String name;
-    private static double price;
-    private String category;
-    private String description;
-    private String brand;
-    private String discountCode;
+    private String name;
+    private double price;
     private int quantity;
-
     private Boolean Available = true;
     private Boolean Loose ;
 
@@ -29,68 +24,37 @@ public class Item {
         Loose = loose;
     }
 
-
     public Item() {
 
     }
 
-    public Item( int id, String name, double price, String category, String description, String brand, String discountCode, int quantity) {
+    public Item(int id, String name, double price, int quantity) {
         this.itemID = id;
         this.name = name;
         this.price = price;
-        this.category = category;
-        this.description = description;
-        this.brand = brand;
-        this.discountCode = discountCode;
         this.quantity = quantity;
+        this.Available = true;
+        this.Loose = true;
     }
+
     public int getItemID() {
         return itemID;
     }
-
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setPrice(int newPrice) {
+    public void setPrice(double newPrice) {
         this.price = newPrice;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public static double getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public static String getName() {
+    public String getName() {
         return name;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getDiscountCode() {
-        return discountCode;
-    }
-
-    public void setDiscountCode(String discountCode) {
-        this.discountCode = discountCode;
     }
 
     public int getQuantity() {
@@ -101,21 +65,10 @@ public class Item {
         this.quantity = quantity;
     }
 
-    public String getCategory( ){
-        return category;
-    }
-
-
-    public void setItemInfo(int id, String name, int price, String category, String description, String brand, String discountCode, int quantity) {
+    public void setItemInfo(int id, String name, double price, int quantity) {
         this.itemID = id;
         this.name = name;
         this.price = price;
-        this.category = category;
-        this.description = description;
-        this.brand = brand;
-        this.discountCode = discountCode;
         this.quantity = quantity;
     }
-
-
 }

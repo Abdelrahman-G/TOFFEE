@@ -1,23 +1,26 @@
 package Ordering;
+
 import Products.Item;
 
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ShoppingCart {
     public static Map<Item, Integer> scItems = new HashMap<>();
-    private double cartPrice = 0;
+    private static double cartPrice;
 
+
+    public ShoppingCart() {
+    }
 
     public static Map<Item, Integer> getItems() {
         return scItems;
     }
 
 
-    public static void addItem(Item item, int quantity) {
+
+    public static void addItemtoSC(Item item, int quantity) {
+
         scItems.put(item, quantity);
     }
 

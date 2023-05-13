@@ -1,78 +1,71 @@
-
-import Database.*;
-import Ordering.*;
-import Products.*;
-import Users.*;
-
-import java.util.Objects;
+import Managers.*;
+import Ordering.ShoppingCart;
 import java.util.Scanner;
 
 public class Main {
+    private static Scanner scanner = new Scanner(System.in);
+    private static UsersManager usersDB = new UsersManager();
+    private static CartManager cartManager = new CartManager();
+
     public static void showMenu() {
-        Scanner sc = new Scanner(System.in);
-        if (true) { //For not-registered users
-            System.out.println("1. Register a new user\n2. Log in\n3. View catalog\n4. Exit\n");
-            int option = sc.nextInt();
+        System.out.println();
+        if (usersDB.getUser() == null) { // For not-registered users
+            System.out.println("Please choose the option you would like to do:");
+            System.out.println("1. Register a new user");
+            System.out.println("2. Log in");
+            System.out.println("3. View Menu");
+            System.out.println("4. Exit");
+
+            int option = scanner.nextInt();
+
             switch (option) {
                 case 1:
-                    String username , password , address , phone,email ;
-                    System.out.println("enter your username : ");
-                    username = sc.next();
-                    System.out.println("enter your password : ");
-                    password = sc.next();
-                    System.out.println("enter your address : ");
-                    address = sc.next();
-                    System.out.println("enter your email : ");
-                    email = sc.next();
-                    System.out.println("enter your phone number : ");
-                    phone = sc.next();
-                    Customer newCustomer = new Customer(username,1,email , address,password);
-                    newCustomer.register(username,password,address,phone);
-                    String otp = newCustomer.OTPGenerator();
-                    if (newCustomer.sendOTP(username , email,otp)) {
-                        System.out.println("enter the sent OTP");
-                        String sentOTP = sc.next();
-                        if (Objects.equals(sentOTP, otp))
-                            System.out.println("Registration is completed");
-                        else
-                            System.out.println("invalid OTP, failed to register");
-                     }
+                    usersDB.addUser();
                     break;
                 case 2:
-                    UsersDB user = new UsersDB();
-                    user.verifyLogIn();
+                    usersDB.verifyLogIn();
                     break;
-                case 3: MenuDB.viewMenu(); break;
-                default:
-                    System.exit(0);
-            }
-        } else { //For registered users
-            System.out.println("1. View catalog\n2. View shopping cart\n3. Logout\n4. Exit\n");
-            int option = sc.nextInt();
-            switch (option) {
-                case 1: MenuDB.viewMenu(); break;
-                case 2: /*Handle view cart Here*/ break;
                 case 3:
+                    MenuManager.viewMenu();
+                    break;
+                default:
                     System.exit(0);
+            }
+        } else { // For registered users
+            System.out.println("Please choose the option you would like to do:");
+            System.out.println("1. View Menu");
+            System.out.println("2. View shopping cart");
+            System.out.println("3. Logout");
+            System.out.println("4. Exit");
+
+            int option = scanner.nextInt();
+
+            switch (option) {
+                case 1:
+                    MenuManager.viewMenu();
+                    break;
+                case 2:
+                    ShoppingCart cart = new ShoppingCart();
+                    MenuManager.viewMenu();
+                    cartManager.dealingWithCart(cart);
+                    break;
+                case 3:
+                    usersDB.logout();
+                    System.out.println("Logged out successfully.");
                     break;
                 default:
                     System.exit(0);
             }
         }
-
-        return;
     }
+
     public static void main(String[] args) {
-        Item item1 = new Item(1, "Coke", 2, "Drink", "Coke", "Coke", "Coke", 10);
-        Item item2 = new Item(2, "Pepsi", 2, "Drink", "Pepsi", "Pepsi", "Pepsi", 10);
-        MenuDB.addItemToMenu(item1);
-        MenuDB.addItemToMenu(item2);
+        System.out.println("Welcome to Toffee Shop..");
+        UsersManager userManager = new UsersManager();
+        userManager.sendOTP("Saif","saifehazemb@gmail.com", "1234");
 
-        System.out.println("Welcome to Toffee Shop..\nPlease choose the option you would like to do:\n");
-        while (true) {
+        /*while (true) {
             showMenu();
-        }
-
+        }*/
     }
-
 }
