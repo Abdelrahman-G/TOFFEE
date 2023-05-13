@@ -18,7 +18,6 @@ public class ShoppingCart {
     }
 
 
-
     public static void addItemtoSC(Item item, int quantity) {
 
         scItems.put(item, quantity);

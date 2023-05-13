@@ -8,24 +8,8 @@ public class Item {
     private Boolean Available = true;
     private Boolean Loose ;
 
-    public Boolean getAvailablity() {
-        return Available;
-    }
-
-    public void setAvailablity(Boolean available) {
-        Available = available;
-    }
-
     public Boolean isLoose() {
         return Loose;
-    }
-
-    public void setLoose(Boolean loose) {
-        Loose = loose;
-    }
-
-    public Item() {
-
     }
 
     public Item(int id, String name, double price, int quantity) {
@@ -56,19 +40,9 @@ public class Item {
     public String getName() {
         return name;
     }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public void setItemInfo(int id, String name, double price, int quantity) {
-        this.itemID = id;
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
-    }
+
 }

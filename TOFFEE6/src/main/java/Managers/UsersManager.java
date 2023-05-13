@@ -12,11 +12,14 @@ import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 public class UsersManager {
     static ArrayList<RegisteredCustomer> systemUsers = new ArrayList<RegisteredCustomer>();
+
     public UsersManager() {
         ReadFileToSystem();
     }
+
     static RegisteredCustomer currentUser = null;
 
     public static String otpGenerator() {
@@ -64,9 +67,10 @@ public class UsersManager {
         return success;
     }
 
-    public static boolean verifyOTP (String otp , String systemOTP) {
+    public static boolean verifyOTP(String otp, String systemOTP) {
         return Objects.equals(otp, systemOTP);
     }
+
     public static void addUser() {
         Scanner sc = new Scanner(System.in);
         //RegisteredCustomer(String uName,  String passWord, String eMail, String uPhone )
@@ -99,15 +103,14 @@ public class UsersManager {
             }
         }
         while (true) {
-            String systemOTP = otpGenerator() , otp;
-            sendOTP(username,email, systemOTP);
+            String systemOTP = otpGenerator(), otp;
+            sendOTP(username, email, systemOTP);
             System.out.println("please enter OTP sent to this email " + email);
             otp = sc.next();
-            if (verifyOTP(otp , systemOTP)){
+            if (verifyOTP(otp, systemOTP)) {
                 System.out.println("email is verified");
                 break;
-            }
-            else {
+            } else {
                 System.out.println("WRONG OTP");
                 System.exit(0);
             }
@@ -115,17 +118,17 @@ public class UsersManager {
 
 
         while (true) {
-        System.out.println("Enter your phone : ");
-        phone = sc.next();
+            System.out.println("Enter your phone : ");
+            phone = sc.next();
 
             if (!isPhoneNumber(phone)) {
                 System.out.println("Invalid Phone");
             } else {
                 break;
             }
-    }
+        }
         RegisteredCustomer newUser = new RegisteredCustomer(username, password, email, phone);
-        writeIntoFile(username,password,email,phone);
+        writeIntoFile(username, password, email, phone);
         systemUsers.add(newUser);
         System.out.println("User added successfully");
     }
@@ -146,28 +149,31 @@ public class UsersManager {
             return false;
         }
     }
+
     public static boolean isPhoneNumber(String phoneNumber) {
         String regex = "^01[1250]\\d{8}$";
         return phoneNumber.matches(regex);
     }
+
     private static boolean checkEmail(String email) {
         String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
-    public static void writeIntoFile(String username, String password, String email, String Phone)  {
-        String userData = username + " | "+ password + " | " + email + " | " + Phone;
-        try{
-            FileWriter fWriter = new FileWriter ("CustomersData.txt", true);
+
+    public static void writeIntoFile(String username, String password, String email, String Phone) {
+        String userData = username + " | " + password + " | " + email + " | " + Phone;
+        try {
+            FileWriter fWriter = new FileWriter("CustomersData.txt", true);
             fWriter.write(userData + "\n");
             fWriter.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("Error writing user data: " + e.getMessage());
         }
     }
-    public void ReadFileToSystem (){
+
+    public void ReadFileToSystem() {
         String filename = "CustomersData.txt";
 
         try {
@@ -192,7 +198,6 @@ public class UsersManager {
             System.out.println("Error reading file: " + e.getMessage());
         }
     }
-
 
 
     public RegisteredCustomer verifyLogIn() {
@@ -222,7 +227,7 @@ public class UsersManager {
         return currentUser;
     }
 
-    public static void logout(){
+    public static void logout() {
         currentUser = null;
     }
 }

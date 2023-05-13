@@ -25,38 +25,16 @@ public class Order {
         this.orderID = ++orderID;
     }
 
-    public Order(ShoppingCart cartt) {
+    public Order(ShoppingCart userCart) {
         this.orderID = ++orderID;
-        this.cart = cartt;
+        this.cart = userCart;
     }
 
-    public double getTotalOrderPrice() {
-        return totalCost;
-    }
-
-    public boolean isPaid() {
-        return isPaid;
-    }
 
     public void setPaid(boolean isPaid) {
         this.isPaid = isPaid;
     }
 
-    public boolean isDelivered() {
-        return isDelivered;
-    }
-
-    public void setDelivered(boolean isDelivered) {
-        this.isDelivered = isDelivered;
-    }
-
-    public int getId() {
-        return orderID;
-    }
-
-    public String getDate() {
-        return Date;
-    }
 
     public void getOrderInfo() {
         System.out.println("Order ID: " + orderID);

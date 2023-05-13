@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 
 public class CartManager {
-    public static int LOOSE_MAX = 10, PACKAGE_MAX = 50;
+    private static int LOOSE_MAX = 10, PACKAGE_MAX = 50;
     private ShoppingCart userCart = new ShoppingCart();
     private OrdersManager orderManager;
     MenuManager menuController = new MenuManager();
@@ -106,11 +106,5 @@ public class CartManager {
 
     }
 
-    public boolean isOrderDelivered() {
-        return orderManager.isOrderDelivered();
-    }
 
-    public void setOrderDelivered(boolean isDelivered) {
-        orderManager.setOrderDelivered(isDelivered);
-    }
 }

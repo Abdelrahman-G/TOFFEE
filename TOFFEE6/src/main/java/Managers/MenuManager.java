@@ -1,5 +1,4 @@
 package Managers;
-
 import Products.Item;
 import Products.Menu;
 
@@ -8,10 +7,7 @@ import java.util.Map;
 
 public class MenuManager {
     private static Menu menu = new Menu();
-    private  static int LOOSE_MAX = 10, PACKAGE_MAX = 50;
-
     public MenuManager() {
-
     }
     public static Map<Integer, Item> getSysItems() {
         return menu.getMenuItems();

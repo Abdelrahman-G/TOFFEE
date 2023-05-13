@@ -28,10 +28,6 @@ public class Menu {
         systemItems.put(id, item);
     }
 
-    public void removeItemFromMenu(int id) {
-        systemItems.remove(id);
-    }
-
     public void updateMenuItemInfo(int itemID, String name, int price, int quantity) {
         Item itemToUpdate = systemItems.get(itemID);
         if (itemToUpdate != null) {
